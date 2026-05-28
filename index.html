@@ -8,20 +8,21 @@
     <style>
         * { margin:0; padding:0; box-sizing:border-box }
         :root {
-            --gold: #c9a84c;
-            --gold-light: #e8c96d;
-            --gold-dim: #8a6a28;
-            --bg: #0a0508;
-            --bg2: #110a0e;
-            --maroon: #1a0510;
-            --text: #f0e6d3;
-            --text-dim: #a89070;
+            --gold: #d4af37;
+            --gold-light: #c9a84c;
+            --gold-dim: #b88645;
+            --bg: #fdf6eb;
+            --bg2: #f2e7d5;
+            --maroon: #8b5e34;
+            --text: #c9a84c;
+            --text-dim: #b88645;
         }
         html { scroll-behavior: smooth }
         body {
             background: var(--bg);
-            color: var(--text);
+            color: var(--gold);
             font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
             overflow-x: hidden;
             min-height: 100vh;
             /* FIX: prevent text selection drag */
@@ -51,7 +52,7 @@
 
         #door-left {
             position: absolute; top:0; left:0; width:50%; height:100%;
-            background: radial-gradient(ellipse 120% 100% at 50% 50%, #1a0a10 0%, #0a0508 100%);
+            background: radial-gradient(ellipse 120% 100% at 50% 50%, #fdf6eb 0%, #e6d3ba 100%);
             transform-origin: left center;
             transition: transform 2s cubic-bezier(.77,0,.18,1), opacity 1.5s ease;
             backface-visibility: hidden;
@@ -65,7 +66,7 @@
         }
         #door-right {
             position: absolute; top:0; right:0; width:50%; height:100%;
-            background: radial-gradient(ellipse 120% 100% at 50% 50%, #1a0a10 0%, #0a0508 100%);
+            background: radial-gradient(ellipse 120% 100% at 50% 50%, #fdf6eb 0%, #e6d3ba 100%);
             transform-origin: right center;
             transition: transform 2s cubic-bezier(.77,0,.18,1), opacity 1.5s ease;
             backface-visibility: hidden;
@@ -134,10 +135,10 @@
         #gate-ring {
             width:150px; height:150px; border-radius:50%;
             border:2px solid var(--gold);
-            background: radial-gradient(circle at 42% 36%, #1c1207, #080604);
+            background: radial-gradient(circle at 42% 36%, #ffffff, #fdf6eb);
             display:flex; align-items:center; justify-content:center;
             position:relative;
-            box-shadow: 0 0 0 5px #080604, 0 0 0 7px rgba(201,168,76,.35), 0 0 50px 8px rgba(201,168,76,.18), inset 0 0 30px rgba(0,0,0,.7);
+            box-shadow: 0 0 0 5px #fdf6eb, 0 0 0 7px rgba(201,168,76,.35), 0 0 50px 8px rgba(201,168,76,.18), inset 0 0 20px rgba(184,134,69,.2);
             animation: ringGlow 3s ease-in-out infinite;
             cursor:pointer; pointer-events:auto;
         }
@@ -146,13 +147,13 @@
             border:1px solid rgba(201,168,76,.18);
         }
         @keyframes ringGlow {
-            0%,100% { box-shadow:0 0 0 5px #080604,0 0 0 7px rgba(201,168,76,.3),0 0 40px 6px rgba(201,168,76,.12),inset 0 0 30px rgba(0,0,0,.7) }
-            50% { box-shadow:0 0 0 5px #080604,0 0 0 7px rgba(201,168,76,.5),0 0 70px 14px rgba(201,168,76,.25),inset 0 0 30px rgba(0,0,0,.7) }
+            0%,100% { box-shadow:0 0 0 5px #fdf6eb,0 0 0 7px rgba(201,168,76,.3),0 0 40px 6px rgba(201,168,76,.12),inset 0 0 20px rgba(184,134,69,.2) }
+            50% { box-shadow:0 0 0 5px #fdf6eb,0 0 0 7px rgba(201,168,76,.5),0 0 70px 14px rgba(201,168,76,.25),inset 0 0 20px rgba(184,134,69,.2) }
         }
         #gate-dk {
             font-family:'Cinzel',serif; font-size:42px; font-weight:700; letter-spacing:8px;
-            color:var(--gold-light);
-            text-shadow:0 0 20px rgba(201,168,76,.8),0 0 40px rgba(201,168,76,.4);
+            color:var(--gold-dim);
+            text-shadow:0 0 20px rgba(201,168,76,.4),0 0 40px rgba(201,168,76,.2);
             animation: dkGlow 3s ease-in-out infinite;
         }
         @keyframes dkGlow {
@@ -174,12 +175,15 @@
 
         /* ── PARTICLES ── */
         #particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden }
-        .p { position:absolute; border-radius:50%; animation:float linear infinite; opacity:0 }
+        .p { position:absolute; animation:float linear infinite; opacity:0 }
+        .p-dot { border-radius:50% }
+        .p-icon { font-size:16px; line-height:1 }
         @keyframes float {
-            0% { transform:translateY(100vh) rotate(0); opacity:0 }
-            10% { opacity:1 }
-            90% { opacity:.6 }
-            100% { transform:translateY(-10vh) rotate(720deg); opacity:0 }
+            0% { transform:translateY(100vh) rotate(0) scale(0.5); opacity:0 }
+            10% { opacity:.5 }
+            50% { opacity:.35 }
+            90% { opacity:.2 }
+            100% { transform:translateY(-10vh) rotate(360deg) scale(1); opacity:0 }
         }
 
         /* ── SECTIONS ── */
@@ -205,31 +209,31 @@
         #hero {
             min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
             text-align:center;
-            background: radial-gradient(ellipse 80% 60% at 50% 30%, #2a0520 0%, transparent 70%),
-                        radial-gradient(ellipse 60% 40% at 50% 80%, #1a0a00 0%, transparent 60%);
+            background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(212,175,55,0.1) 0%, transparent 70%),
+                        radial-gradient(ellipse 60% 40% at 50% 80%, rgba(139,90,43,0.05) 0%, transparent 60%);
             padding:40px 24px;
         }
-        #hero .tag { font-family:'Cormorant Garamond',serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold-dim); margin-bottom:32px; animation:fadeIn 1.5s .3s both }
+        #hero .tag { font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:32px; animation:fadeIn 1.5s .3s both; text-shadow:0 0 15px rgba(212,175,55,.3) }
         .name-wrap { overflow:hidden; margin:8px 0 }
         .name {
             font-family:'Cinzel',serif;
             /* FIX: Kavibharathi single line on mobile */
-            font-size: clamp(20px, 7.5vw, 52px);
-            font-weight:700; letter-spacing:3px; color:var(--gold-light); display:block;
+            font-size: clamp(24px, 8.5vw, 58px);
+            font-weight:700; letter-spacing:4px; color:var(--gold); display:block;
             animation:slideUp 1.2s cubic-bezier(.16,1,.3,1) both;
-            text-shadow:0 0 40px rgba(201,168,76,.4);
+            text-shadow:0 2px 8px rgba(212,175,55,.5), 0 0 40px rgba(201,168,76,.3);
             white-space: nowrap;
         }
         .name:nth-child(1) { animation-delay:.5s }
         .name:nth-child(2) { animation-delay:.7s }
-        .ampersand { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:var(--gold-dim); letter-spacing:8px; display:block; margin:12px 0; animation:fadeIn 1.2s 1s both }
-        .hero-sub { font-family:'Dancing Script',cursive; font-size:18px; color:var(--text-dim); margin-top:24px; animation:fadeIn 1.2s 1.2s both }
-        .hero-date { font-family:'Cinzel',serif; font-size:clamp(10px,3vw,13px); letter-spacing:2px; color:var(--gold); margin-top:16px; animation:fadeIn 1.2s 1.4s both }
+        .ampersand { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:28px; font-weight:700; color:var(--gold); letter-spacing:8px; display:block; margin:14px 0; animation:fadeIn 1.2s 1s both; text-shadow:0 0 20px rgba(212,175,55,.4) }
+        .hero-sub { font-family:'Dancing Script',cursive; font-size:24px; font-weight:700; color:var(--gold-dim); margin-top:24px; animation:fadeIn 1.2s 1.2s both; text-shadow:0 0 15px rgba(184,134,69,.3) }
+        .hero-date { font-family:'Cinzel',serif; font-size:clamp(12px,3.5vw,16px); font-weight:700; letter-spacing:3px; color:var(--gold); margin-top:16px; animation:fadeIn 1.2s 1.4s both; text-shadow:0 0 10px rgba(212,175,55,.3) }
         @keyframes slideUp { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
         @keyframes fadeIn { from{opacity:0} to{opacity:1} }
         .hero-orn { animation:fadeIn 1.5s 1.6s both }
         .scroll-hint { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; animation:fadeIn 1s 2.5s both }
-        .scroll-hint span { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold-dim) }
+        .scroll-hint span { font-size:12px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--gold-dim) }
         .scroll-line { width:1px; height:40px; background:linear-gradient(180deg,var(--gold-dim),transparent); animation:scrollPulse 1.5s ease-in-out infinite }
         @keyframes scrollPulse { 0%{opacity:1;transform:scaleY(1)} 100%{opacity:0;transform:scaleY(0);transform-origin:top} }
 
@@ -240,20 +244,20 @@
 
         /* ── INVITE TEXT ── */
         .invite-block { text-align:center }
-        .invite-block .small { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold-dim); margin-bottom:20px }
-        .invite-block p { font-size:17px; line-height:1.9; color:var(--text-dim); font-style:italic }
-        .invite-block .emoji-line { font-size:20px; margin-top:16px; letter-spacing:6px }
+        .invite-block .small { font-size:14px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; text-shadow:0 0 10px rgba(212,175,55,.2) }
+        .invite-block p { font-size:20px; font-weight:600; line-height:1.9; color:var(--gold-dim); font-style:italic }
+        .invite-block .emoji-line { font-size:24px; margin-top:16px; letter-spacing:6px }
 
         /* ── SCRATCH CARD ── */
         .scratch-wrap { text-align:center; margin:20px 0 }
-        .scratch-label { font-family:'Dancing Script',cursive; font-size:22px; color:var(--gold-dim); margin-bottom:20px; display:block }
+        .scratch-label { font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--gold); margin-bottom:20px; display:block; text-shadow:0 0 15px rgba(212,175,55,.3) }
         .scratch-container { position:relative; width:260px; height:150px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 0 30px rgba(201,168,76,.2) }
-        .scratch-reveal { position:absolute; inset:0; background:linear-gradient(135deg,var(--maroon),#2a1020); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:1px solid var(--gold-dim); border-radius:12px }
-        .scratch-reveal .sr-date { font-family:'Cinzel',serif; font-size:22px; color:var(--gold-light); letter-spacing:3px }
-        .scratch-reveal .sr-day { font-size:13px; letter-spacing:4px; text-transform:uppercase; color:var(--gold-dim) }
-        .scratch-reveal .sr-time { font-size:14px; color:var(--text-dim); margin-top:4px }
+        .scratch-reveal { position:absolute; inset:0; background:linear-gradient(135deg,var(--bg2),#e6d3ba); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:1px solid var(--gold-dim); border-radius:12px }
+        .scratch-reveal .sr-date { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); letter-spacing:3px; text-shadow:0 0 10px rgba(212,175,55,.3) }
+        .scratch-reveal .sr-day { font-size:15px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--gold-dim) }
+        .scratch-reveal .sr-time { font-size:16px; font-weight:600; color:var(--gold-dim); margin-top:4px }
         canvas#scratchCanvas { position:absolute; inset:0; cursor:crosshair; border-radius:12px; touch-action:none }
-        .scratch-hint { font-size:11px; color:var(--text-dim); margin-top:12px; letter-spacing:2px; text-transform:uppercase }
+        .scratch-hint { font-size:13px; font-weight:700; color:var(--gold-dim); margin-top:12px; letter-spacing:3px; text-transform:uppercase }
 
         /* ── PHOTO (image section) ── */
         .photo-frame {
@@ -266,18 +270,18 @@
         .photo-frame::before { inset:6px }
         .photo-frame::after { inset:12px; opacity:.25 }
         .photo-frame img { width:100%; height:auto; display:block; object-fit:cover }
-        .photo-caption { font-family:'Dancing Script',cursive; font-size:18px; color:var(--gold-dim); text-align:center; margin-top:16px }
+        .photo-caption { font-family:'Dancing Script',cursive; font-size:24px; font-weight:700; color:var(--gold); text-align:center; margin-top:16px; text-shadow:0 0 15px rgba(212,175,55,.3) }
 
         /* ── COUNTDOWN ── */
-        .countdown-title { font-family:'Dancing Script',cursive; font-size:26px; color:var(--gold); text-align:center; margin-bottom:28px }
+        .countdown-title { font-family:'Dancing Script',cursive; font-size:32px; font-weight:700; color:var(--gold); text-align:center; margin-bottom:28px; text-shadow:0 0 20px rgba(212,175,55,.3) }
         .countdown-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:320px; margin:0 auto }
-        .cd-unit { background:rgba(201,168,76,.06); border:1px solid var(--gold-dim); border-radius:8px; padding:14px 8px; text-align:center }
-        .cd-num { font-family:'Cinzel',serif; font-size:28px; font-weight:700; color:var(--gold-light); line-height:1; display:block }
-        .cd-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-top:6px; display:block }
+        .cd-unit { background:rgba(201,168,76,.08); border:1px solid var(--gold-dim); border-radius:8px; padding:14px 8px; text-align:center }
+        .cd-num { font-family:'Cinzel',serif; font-size:32px; font-weight:700; color:var(--gold); line-height:1; display:block; text-shadow:0 0 10px rgba(212,175,55,.3) }
+        .cd-label { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold-dim); margin-top:6px; display:block }
 
         /* ── TIMELINE (1-by-1 animated) ── */
-        .timeline-title { font-family:'Dancing Script',cursive; font-size:24px; color:var(--gold); text-align:center; margin-bottom:8px }
-        .timeline-icon { font-size:20px; text-align:center; margin-bottom:20px }
+        .timeline-title { font-family:'Dancing Script',cursive; font-size:30px; font-weight:700; color:var(--gold); text-align:center; margin-bottom:8px; text-shadow:0 0 15px rgba(212,175,55,.3) }
+        .timeline-icon { font-size:24px; text-align:center; margin-bottom:20px }
         .timeline { position:relative; padding-left:32px }
         .tl-line {
             position:absolute; left:11px; top:0; width:2px; height:0;
@@ -306,43 +310,36 @@
             background:radial-gradient(circle,rgba(201,168,76,.3),var(--bg));
             box-shadow:0 0 12px rgba(201,168,76,.7);
         }
-        .tl-badge { display:inline-block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold-dim); padding:3px 10px; border-radius:20px; margin-bottom:6px; background:rgba(201,168,76,.06) }
-        .tl-event { font-family:'Cinzel',serif; font-size:15px; color:var(--text); font-weight:600; margin-bottom:4px }
-        .tl-desc { font-size:13px; color:var(--text-dim); font-style:italic; line-height:1.6 }
+        .tl-badge { display:inline-block; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold-dim); padding:4px 12px; border-radius:20px; margin-bottom:6px; background:rgba(201,168,76,.08) }
+        .tl-event { font-family:'Cinzel',serif; font-size:18px; color:var(--gold); font-weight:700; margin-bottom:4px; text-shadow:0 0 10px rgba(212,175,55,.2) }
+        .tl-desc { font-size:15px; font-weight:600; color:var(--gold-dim); font-style:italic; line-height:1.6 }
 
         /* ── VENUE ── */
         .venue-block { text-align:center }
-        .venue-name { font-family:'Cinzel',serif; font-size:18px; color:var(--gold-light); letter-spacing:2px; margin-bottom:8px }
-        .venue-addr { font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:20px }
-        .map-btn { display:inline-block; padding:12px 28px; background:linear-gradient(135deg,var(--gold-dim),var(--gold)); color:#0a0508; font-family:'Cinzel',serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; border-radius:4px; font-weight:700; box-shadow:0 4px 20px rgba(201,168,76,.3); transition:transform .2s,box-shadow .2s }
+        .venue-name { font-family:'Cinzel',serif; font-size:22px; font-weight:700; color:var(--gold); letter-spacing:3px; margin-bottom:8px; text-shadow:0 0 15px rgba(212,175,55,.3) }
+        .venue-addr { font-size:16px; font-weight:600; color:var(--gold-dim); line-height:1.8; margin-bottom:20px }
+        .map-btn { display:inline-block; padding:14px 32px; background:linear-gradient(135deg,var(--gold-dim),var(--gold)); color:#ffffff; font-family:'Cinzel',serif; font-size:14px; font-weight:700; letter-spacing:3px; text-transform:uppercase; text-decoration:none; border-radius:6px; box-shadow:0 4px 20px rgba(201,168,76,.4); transition:transform .2s,box-shadow .2s }
         .map-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(201,168,76,.5) }
 
-        /* ── GIFTS ── */
-        .gift-items { display:flex; flex-wrap:wrap; gap:12px; justify-content:center }
-        .gift-item { background:var(--bg2); padding:12px; border:1px solid var(--gold-dim); border-radius:8px }
 
-        /* ── RSVP FORM ── */
-        .rsvp-form { display:flex; flex-direction:column; gap:8px; max-width:320px; margin:auto }
-        .rsvp-form input,.rsvp-form select,.rsvp-form textarea { padding:8px; background:var(--bg2); border:1px solid var(--gold-dim); color:var(--text); font-family:'Cormorant Garamond',serif; font-size:15px; outline:none; border-radius:2px }
-        .rsvp-form button { padding:12px; background:linear-gradient(135deg,var(--gold-dim),var(--gold)); color:#0a0508; font-family:'Cinzel',serif; font-weight:700; border:none; cursor:pointer; box-shadow:0 4px 12px rgba(201,168,76,.3); border-radius:2px }
 
-        footer { text-align:center; padding:48px 24px 60px; font-family:'Dancing Script',cursive; font-size:22px; color:var(--gold-dim); background:radial-gradient(ellipse 80% 50% at 50% 100%, rgba(42,5,32,.5), transparent) }
-        footer p { font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--text-dim); margin-top:12px; letter-spacing:2px; text-transform:uppercase }
+        footer { text-align:center; padding:48px 24px 60px; font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--gold); background:radial-gradient(ellipse 80% 50% at 50% 100%, rgba(212,175,55,.08), transparent); text-shadow:0 0 15px rgba(212,175,55,.3) }
+        footer p { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:700; color:var(--gold-dim); margin-top:12px; letter-spacing:3px; text-transform:uppercase }
 
         @keyframes glow { 0%,100%{text-shadow:0 0 20px rgba(201,168,76,.3)} 50%{text-shadow:0 0 50px rgba(201,168,76,.7)} }
         .glow { animation:glow 3s ease-in-out infinite }
 
         /* ── BIBLE VERSE SECTION ── */
         .verse-block { text-align:center; padding:20px 0 }
-        .cross-icon { font-size:28px; color:var(--gold); display:block; margin-bottom:12px }
-        .verse-text { font-family:'Cormorant Garamond',serif; font-size:16px; font-style:italic; color:var(--text-dim); line-height:1.8 }
-        .verse-ref { font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; color:var(--gold-dim); margin-top:8px; display:block }
+        .cross-icon { font-size:36px; color:var(--gold); display:block; margin-bottom:12px; text-shadow:0 0 20px rgba(212,175,55,.4) }
+        .verse-text { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; font-style:italic; color:var(--gold); line-height:1.8; text-shadow:0 0 15px rgba(212,175,55,.2) }
+        .verse-ref { font-family:'Cinzel',serif; font-size:14px; font-weight:700; letter-spacing:4px; color:var(--gold-dim); margin-top:8px; display:block }
 
         /* ── FAMILY NAMES ── */
         .family-block { display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin:24px 0; text-align:center }
         .family-side { flex:1; min-width:140px }
-        .family-name { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-dim); line-height:2 }
-        .family-amp { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:var(--gold-dim); display:flex; align-items:center; justify-content:center; padding-top:12px }
+        .family-name { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:700; color:var(--gold); line-height:2; text-shadow:0 0 10px rgba(212,175,55,.15) }
+        .family-amp { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; font-weight:700; color:var(--gold-dim); display:flex; align-items:center; justify-content:center; padding-top:12px }
     </style>
 </head>
 <body>
@@ -388,6 +385,17 @@
 
 <div id="content-container">
 
+    <!-- ══ BIBLE VERSE ══ -->
+    <section>
+        <div class="reveal verse-block">
+            <div class="divider"><span></span><i>✦</i><span></span></div>
+            <span class="cross-icon">✝</span>
+            <p class="verse-text">"The matter is firmly decided by God"</p>
+            <span class="verse-ref">— Genesis 41:32</span>
+            <div class="divider" style="margin-top:28px"><span></span><i>✦</i><span></span></div>
+        </div>
+    </section>
+
     <!-- ══ HERO ══ -->
     <section id="hero">
         <p class="tag">Together with their families</p>
@@ -417,17 +425,6 @@
         <div class="scroll-hint">
             <span>scroll</span>
             <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- ══ BIBLE VERSE ══ -->
-    <section>
-        <div class="reveal verse-block">
-            <div class="divider"><span></span><i>✦</i><span></span></div>
-            <span class="cross-icon">✝</span>
-            <p class="verse-text">"The matter is firmly decided by God"</p>
-            <span class="verse-ref">— Genesis 41:32</span>
-            <div class="divider" style="margin-top:28px"><span></span><i>✦</i><span></span></div>
         </div>
     </section>
 
@@ -561,36 +558,7 @@
         </div>
     </section>
 
-    <!-- ══ GIFTS ══ -->
-    <section id="gifts-section" class="reveal">
-        <div class="invite-block">
-            <h2 class="glow" style="font-family:'Cinzel',serif;font-size:28px;color:var(--gold-light);margin-bottom:12px;">Our Gifts</h2>
-            <p class="small" style="color:var(--gold-dim);margin-bottom:24px;">Your presence is the greatest gift. If you wish to honour us with a contribution, you can send your blessings here.</p>
-            <div class="gift-items">
-                <div class="gift-item"><p style="margin:0;color:var(--text);font-family:'Cinzel',serif;">Gift Card</p></div>
-                <div class="gift-item"><p style="margin:0;color:var(--text);font-family:'Cinzel',serif;">Bank Transfer</p></div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ══ RSVP ══ -->
-    <section id="rsvp-section" class="reveal">
-        <div class="invite-block">
-            <h2 class="glow" style="font-family:'Cinzel',serif;font-size:28px;color:var(--gold-light);margin-bottom:12px;">Send Message</h2>
-            <p class="small" style="color:var(--gold-dim);margin-bottom:24px;">Kindly let us know if you will be attending and send your wishes.</p>
-            <div class="rsvp-form">
-                <input type="text" id="guest-name" placeholder="Your Name">
-                <input type="email" id="guest-email" placeholder="Your Email">
-                <select id="attending">
-                    <option value="" disabled selected>Will you be attending?</option>
-                    <option value="yes">Yes, I will be there</option>
-                    <option value="no">Sorry, I can't make it</option>
-                </select>
-                <textarea id="message" placeholder="Your wishes..." rows="3"></textarea>
-                <button onclick="sendWhatsAppMessage()">Send Message</button>
-            </div>
-        </div>
-    </section>
 
     <footer class="reveal">
         <svg class="orn" viewBox="0 0 300 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:24px;opacity:.6">
@@ -640,15 +608,26 @@ function openDoor() {
     }, 2250);
 }
 
-// ── PARTICLES ──
+// ── PARTICLES (hearts & wedding icons) ──
 (function () {
     const c = document.getElementById('particles');
-    const colors = ['rgba(201,168,76,', 'rgba(255,220,120,', 'rgba(180,140,50,'];
-    for (let i = 0; i < 35; i++) {
-        const p = document.createElement('div'); p.className = 'p';
+    const icons = ['❤️', '💍', '💒', '💕', '💖', '✨', '🌹', '❣️', '💐', '💗'];
+    const goldColors = ['rgba(201,168,76,', 'rgba(212,175,55,', 'rgba(184,134,69,'];
+    // Add gold dot particles
+    for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div'); p.className = 'p p-dot';
         const sz = Math.random() * 3 + 1;
-        const col = colors[Math.floor(Math.random() * colors.length)];
-        p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${col}${Math.random()*.8+.2});animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*-20}s;box-shadow:0 0 ${sz*2}px ${col}0.6)`;
+        const col = goldColors[Math.floor(Math.random() * goldColors.length)];
+        p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${col}${Math.random()*.5+.2});animation-duration:${Math.random()*18+12}s;animation-delay:${Math.random()*-20}s;box-shadow:0 0 ${sz*2}px ${col}0.4)`;
+        c.appendChild(p);
+    }
+    // Add floating emoji icons
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div'); p.className = 'p p-icon';
+        const icon = icons[Math.floor(Math.random() * icons.length)];
+        const sz = Math.random() * 14 + 10;
+        p.textContent = icon;
+        p.style.cssText = `left:${Math.random()*100}%;font-size:${sz}px;animation-duration:${Math.random()*20+15}s;animation-delay:${Math.random()*-25}s;opacity:0;filter:grayscale(0.3) brightness(1.1)`;
         c.appendChild(p);
     }
 })();
@@ -757,19 +736,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     canvas.addEventListener('touchend', () => sc=false);
 })();
 
-// ── WHATSAPP ──
-function sendWhatsAppMessage() {
-    const name = document.getElementById('guest-name').value.trim();
-    const email = document.getElementById('guest-email').value.trim();
-    const attending = document.getElementById('attending').value;
-    const message = document.getElementById('message').value.trim();
-    const text = `*Wedding RSVP – Dinesh & Kavibharathi*
-Name: ${name}
-Email: ${email}
-Attending: ${attending}
-Message: ${message}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-}
+
 
 // Lock scroll until gate opened
 document.body.style.overflow = 'hidden';
